@@ -7,12 +7,7 @@ export default function Home() {
 
   useEffect(() => {
     const connectWebSocket = () => {
-      // Ensure to close any previous connection before creating a new one
-      if (socket.current) {
-        socket.current.close();
-      }
-
-      socket.current = new WebSocket('YOUR AUX-2 PATH HERE');
+            socket.current = new WebSocket('YOUR AUX2 PATH HERE');
 
       socket.current.onopen = () => {
         console.log('Connected to WebSocket server');
@@ -39,10 +34,7 @@ export default function Home() {
     connectWebSocket();
 
     return () => {
-      // Clean up WebSocket connection when component unmounts
-      if (socket.current) {
-        socket.current.close();
-      }
+      socket.current?.close();
     };
   }, []);
 
@@ -136,5 +128,4 @@ const styles = {
     backgroundColor: '#005bb5',
   },
 };
-
 

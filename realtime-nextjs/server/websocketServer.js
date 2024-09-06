@@ -14,7 +14,7 @@ server.on('connection', (socket) => {
 
     // Broadcast message to all clients
     server.clients.forEach((client) => {
-      if (client.readyState === WebSocket.OPEN) {
+      if (client !== socket && client.readyState === WebSocket.OPEN) {
         client.send(broadcastMessage);
       }
     });
@@ -25,5 +25,5 @@ server.on('connection', (socket) => {
   });
 });
 
-console.log('WebSocket server is running on ws://localhost:8080');
+console.log('WebSocket server is running!');
 
